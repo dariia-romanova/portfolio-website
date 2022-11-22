@@ -19,9 +19,9 @@ module.exports = {
       'md': '24px',
       'lg': '32px',
       'xl': '44px',
-      'xxl': '84px',
-      '3xl': '110px',
-      '4xl': '130px',
+      'xxl': '58px',
+      '3xl': '100px',
+      '4xl': '120px',
     },
     extend: {
       fontFamily: {

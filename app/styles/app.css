@@ -552,8 +552,12 @@ video {
   margin-right: 2.5rem;
 }
 
-.mb-6 {
-  margin-bottom: 1.5rem;
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
 }
 
 .flex {
@@ -562,6 +566,10 @@ video {
 
 .grid {
   display: grid;
+}
+
+.hidden {
+  display: none;
 }
 
 .h-screen {
@@ -678,9 +686,14 @@ video {
   background-color: rgb(240 233 225 / var(--tw-bg-opacity));
 }
 
-.py-16 {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .py-6 {
@@ -688,9 +701,8 @@ video {
   padding-bottom: 1.5rem;
 }
 
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+.text-center {
+  text-align: center;
 }
 
 .font-serif {
@@ -699,10 +711,6 @@ video {
 
 .text-lg {
   font-size: 32px;
-}
-
-.text-md {
-  font-size: 24px;
 }
 
 .text-sm {
@@ -732,13 +740,21 @@ body {
 }
 
 @media (min-width: 640px) {
+  .sm\:mb-2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .sm\:mt-2 {
+    margin-top: 0.5rem;
+  }
+
   .sm\:py-6 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
   }
 
-  .sm\:text-lg {
-    font-size: 32px;
+  .sm\:text-xxl {
+    font-size: 58px;
   }
 
   .sm\:text-md {
@@ -747,21 +763,16 @@ body {
 }
 
 @media (min-width: 768px) {
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .md\:bg-transparent {
     background-color: transparent;
-  }
-
-  .md\:py-16 {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-
-  .md\:text-lg {
-    font-size: 32px;
   }
 
   .md\:text-basic {
@@ -771,22 +782,30 @@ body {
 }
 
 @media (min-width: 1024px) {
-  .lg\:bg-transparent {
-    background-color: transparent;
+  .lg\:mt-4 {
+    margin-top: 1rem;
   }
 
-  .lg\:bg-none {
-    background-image: none;
+  .lg\:flex {
+    display: flex;
   }
 
-  .lg\:py-12 {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+  .lg\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .lg\:py-10 {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
+  }
+
+  .lg\:pt-0 {
+    padding-top: 0px;
+  }
+
+  .lg\:pb-8 {
+    padding-bottom: 2rem;
   }
 
   .lg\:text-lg {
@@ -795,9 +814,50 @@ body {
 }
 
 @media (min-width: 1280px) {
+  .xl\:mb-4 {
+    margin-bottom: 1rem;
+  }
+
+  .xl\:mt-4 {
+    margin-top: 1rem;
+  }
+
+  .xl\:py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
   .xl\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
+  }
+
+  .xl\:pt-4 {
+    padding-top: 1rem;
+  }
+
+  .xl\:pt-8 {
+    padding-top: 2rem;
+  }
+
+  .xl\:pb-8 {
+    padding-bottom: 2rem;
+  }
+
+  .xl\:pb-12 {
+    padding-bottom: 3rem;
+  }
+
+  .xl\:pt-0 {
+    padding-top: 0px;
+  }
+
+  .xl\:text-3xl {
+    font-size: 100px;
+  }
+
+  .xl\:text-lg {
+    font-size: 32px;
   }
 }
 
@@ -807,12 +867,32 @@ body {
     margin-right: auto;
   }
 
+  .\32xl\:mb-6 {
+    margin-bottom: 1.5rem;
+  }
+
+  .\32xl\:mt-6 {
+    margin-top: 1.5rem;
+  }
+
   .\32xl\:max-w-\[1420px\] {
     max-width: 1420px;
   }
 
-  .\32xl\:py-32 {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+  .\32xl\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .\32xl\:pt-24 {
+    padding-top: 6rem;
+  }
+
+  .\32xl\:pb-24 {
+    padding-bottom: 6rem;
+  }
+
+  .\32xl\:text-4xl {
+    font-size: 120px;
   }
 }
