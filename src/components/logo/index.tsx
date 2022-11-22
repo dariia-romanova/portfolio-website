@@ -2,11 +2,13 @@ import { Container } from "../container"
 
 export const Logo = () => {
   return (
-    <header className="font-serif text-2xl text-basic py-16">
+    <header className="xl:py-16 lg:py-10 sm:py-6 py-3 md:bg-transparent bg-basic">
       <Container>
-        <span className="font-bold">_</span>
-        dashimi
+        <p className="font-serif lg:text-lg text-sm md:text-basic text-pink">
+          <span className="font-bold">_</span>
+          dashimi
+        </p>
       </Container>
     </header>
-  )
-}
+  );
+};
