@@ -12,6 +12,16 @@ module.exports = {
       'light-pink': '#F3C0C0',
       'green': '#61BC8F',
       'blue': '#4978D6',
+      'transparent': 'transparent',
+    },
+    fontSize: {
+      'sm': '16px',
+      'md': '24px',
+      'lg': '32px',
+      'xl': '44px',
+      'xxl': '84px',
+      '3xl': '110px',
+      '4xl': '130px',
     },
     extend: {
       fontFamily: {
