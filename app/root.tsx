@@ -11,6 +11,11 @@ import styles from "./styles/app.css"
 
 export function links() {
   return [
+    {
+      rel: "icon",
+      href: "favicon.svg",
+      type: "image/svg+xml"
+    },
     { rel: "stylesheet", href: styles },
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     {
