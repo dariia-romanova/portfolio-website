@@ -1,5 +1,4 @@
 import { Outlet } from "@remix-run/react";
-import { HeroSection } from "src/components/hero-section";
 import { Logo } from "src/components/logo";
 
 export default function Index() {
