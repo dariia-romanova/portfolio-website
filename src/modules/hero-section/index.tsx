@@ -55,7 +55,7 @@ export default function HeroSection() {
             animate={isSmallScreen ? 'horizontal' : 'vertical'}
             transition={{ ease: "easeOut", duration: 1 }}
             className={clsx(
-              'absolute md:h-screen h-full flex flex-col w-screen',
+              'absolute md:h-screen h-full flex flex-col w-screen overflow-hidden',
               color === 'pink' && 'bg-pink',
               color === 'green' && 'bg-green',
               color === 'blue' && 'bg-blue',
@@ -64,10 +64,19 @@ export default function HeroSection() {
           >
             <AnimatePresence>
               {isActive ? (
-                <motion.div className="md:h-screen flex-col w-[86%] flex" exit={{ opacity: 0 }} key={`hero-content-${slug}`}>
-                  <div className="md:block hidden">
+                <motion.div
+                  className="md:h-screen flex-col w-[86%] flex"
+                  key={`hero-content-${slug}`}
+                >
+                  <motion.div
+                    className="md:block hidden"
+                    exit={{ y: -100, opacity: 0 }}
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ bounceStiffness: 0, duration: 0.5 }}
+                  >
                     <HeroLogo />
-                  </div>
+                  </motion.div>
                   <HeroContent
                     title={title}
                     subtitle={description}
