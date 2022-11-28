@@ -28,7 +28,7 @@ export default function HeroSection() {
 
   const animationDirections = {
     vertical: (id: number) => ({ 
-      y: id <= activeId ? `${id * 10}%` : `${100 - (chapters.length - id) * 10}%` ,
+      y: id <= activeId ? `${id * 10}%` : `${100 - (chapters.length - id) * 10}%`,
     }),
     horizontal: (id: number) => ({ 
       x: id <= activeId ? `${id * 7}%` : `${100 - (chapters.length - id) * 7}%`,
@@ -41,7 +41,7 @@ export default function HeroSection() {
   const prevSlug = activeId === 0 ? chapters[chapters.length - 1].slug : chapters[activeId - 1].slug;
 
   return (
-    <header className="overflow-y-hidden w-screen h-screen md:block flex flex-col">
+    <header className="overflow-x-hidden w-screen h-screen md:block flex flex-col">
       <div className="md:hidden block">
         <HeroLogo />
       </div>
