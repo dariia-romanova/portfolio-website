@@ -42,7 +42,7 @@ export default function HeroSection() {
   const prevSlug = activeId === 0 ? chapters[chapters.length - 1].slug : chapters[activeId - 1].slug;
 
   return (
-    <header className="overflow-x-hidden w-screen h-screen md:block flex flex-col">
+    <header className="overflow-hidden w-screen h-screen md:block flex flex-col">
       <div className="md:hidden block">
         <HeroLogo />
       </div>
