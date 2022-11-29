@@ -8,7 +8,8 @@ import { HeroContent } from "./hero-content";
 import { HeroSideLink } from "./hero-side-link";
 import { HeroLogo } from "./hero-logo";
 import { AnimatePresence, motion } from "framer-motion"
-import useSmallScreens from "~/hooks/useSmallSceens";
+import useSmallScreens from "@src/hooks/useSmallSceens";
+
 
 type LoaderData = ReturnType<typeof getChapterListings>
 
@@ -82,6 +83,7 @@ export default function HeroSection() {
                     subtitle={description}
                     nextUrl={`/portfolio/${nextSlug}`}
                     prevUrl={`/portfolio/${prevSlug}`}
+                    bgColor={color}
                   />
                 </motion.div> 
               ) : (

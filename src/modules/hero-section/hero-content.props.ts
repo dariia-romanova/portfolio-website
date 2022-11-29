@@ -3,4 +3,5 @@ export interface HeroContentProps {
   subtitle: string;
   prevUrl: string;
   nextUrl: string;
+  bgColor: 'pink' | 'blue' | 'green';
 }

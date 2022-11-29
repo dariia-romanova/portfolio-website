@@ -4,13 +4,14 @@ import { Container } from "../../components/container"
 import type { FC } from "react";
 import type { HeroContentProps } from "./hero-content.props";
 import { motion } from 'framer-motion';
+import { HeroImage } from "./hero-image";
   
 
-export const HeroContent:FC<HeroContentProps> = ({ title, subtitle, prevUrl, nextUrl }) => {
+export const HeroContent:FC<HeroContentProps> = ({ title, subtitle, prevUrl, nextUrl, bgColor }) => {
   return (
     <section className="h-full 2xl:pt-24 2xl:pb-24 xl:pb-12 lg:pt-0 lg:pb-8 py-6">
       <Container className="flex flex-col justify-between h-full">
-        <div className="grid md:grid-cols-2 gap-14 grid-cols-1">
+        <div className="grid md:grid-cols-2 gap-14 grid-cols-1 items-center">
             <motion.div
               exit={{ y: -100, opacity: 0 }}
               transition={{ bounceStiffness: 0, delay: 0.1, duration: 0.5 }}
@@ -23,9 +24,8 @@ export const HeroContent:FC<HeroContentProps> = ({ title, subtitle, prevUrl, nex
 
               <p className="font-serif xl:text-lg sm:text-md text-sm text-basic ">{subtitle}</p>
             </motion.div>
-
-          <div className="bg-basic flex justify-center items-center">
-            pic
+          <div className="justify-self-end">
+            <HeroImage bgColor={bgColor} />
           </div>
         </div>
 
