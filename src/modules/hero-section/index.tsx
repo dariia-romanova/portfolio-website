@@ -8,7 +8,7 @@ import { HeroContent } from "./hero-content";
 import { HeroSideLink } from "./hero-side-link";
 import { HeroLogo } from "./hero-logo";
 import { AnimatePresence, motion } from "framer-motion"
-import useSmallScreens from "@src/hooks/useSmallSceens";
+import { useHeroSwitchAnimation } from "../../hooks/useHeroSwitchAnimation";
 
 
 type LoaderData = ReturnType<typeof getChapterListings>
@@ -20,24 +20,18 @@ export const loader: LoaderFunction = ({ params }) => {
 }
 
 export default function HeroSection() {
-  const isSmallScreen = useSmallScreens();
   const chapters = useLoaderData() as LoaderData;
 
+  const activeChapter = chapters.find(({ isActive }) => isActive);
+  const activeId = activeChapter ? activeChapter.id : 5;
+
+  const { controls, variants } = useHeroSwitchAnimation({activeId, chapterLength: chapters.length});
+
+  //handle errors
   if (!chapters) {
     return (<>Ops</>)
   }
 
-  const animationDirections = {
-    vertical: (id: number) => ({ 
-      y: id <= activeId ? `${id * 10}%` : `${100 - (chapters.length - id) * 10}%`,
-    }),
-    horizontal: (id: number) => ({ 
-      x: id <= activeId ? `${id * 7}%` : `${100 - (chapters.length - id) * 7}%`,
-    }),
-  }
-
-  const activeChapter = chapters.find(({ isActive }) => isActive);
-  const activeId = activeChapter ? activeChapter.id : 5;
   const nextSlug = activeId >= chapters.length - 1 ? chapters[0].slug : chapters[activeId + 1].slug;
   const prevSlug = activeId === 0 ? chapters[chapters.length - 1].slug : chapters[activeId - 1].slug;
 
@@ -51,9 +45,9 @@ export default function HeroSection() {
         {chapters.map(({ id, slug, title, isActive, color, description }) => (
           <motion.div
             custom={id}
-            variants={animationDirections}
-            initial={{ x: 0, y: 0}}
-            animate={isSmallScreen ? 'horizontal' : 'vertical'}
+            variants={variants}
+            initial={{ x: 0, y: 0 }}
+            animate={controls}
             transition={{ ease: "easeOut", duration: 1 }}
             className={clsx(
               'absolute md:h-screen h-full flex flex-col w-screen overflow-hidden',
