@@ -1,39 +1,27 @@
 
-import { useLoaderData } from "@remix-run/react";
-import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { getChapterListings } from "~/models/chapters.server";
+import type { ChaptersLoaderData } from "~/routes/portfolio/$slug";
 import clsx from "clsx";
 import { HeroContent } from "./hero-content";
 import { HeroSideLink } from "./hero-side-link";
 import { HeroLogo } from "./hero-logo";
 import { AnimatePresence, motion } from "framer-motion"
 import { useHeroSwitchAnimation } from "../../hooks/useHeroSwitchAnimation";
+import { getBgColor } from "@src/utils.tsx/getBgColor";
 
 
-type LoaderData = ReturnType<typeof getChapterListings>
+export default function HeroSection({ chapters } : { chapters: ChaptersLoaderData }) {
+  const activeChapterIndex = chapters.findIndex(({ isActive }) => isActive);
 
-export const loader: LoaderFunction = ({ params }) => {
-  const chaptersList = getChapterListings(params?.slug);
+  const { controls, variants } = useHeroSwitchAnimation({activeId: activeChapterIndex, chapterLength: chapters.length});
 
-  return json<LoaderData>(chaptersList)
-}
-
-export default function HeroSection() {
-  const chapters = useLoaderData() as LoaderData;
-
-  const activeChapter = chapters.find(({ isActive }) => isActive);
-  const activeId = activeChapter ? activeChapter.id : 5;
-
-  const { controls, variants } = useHeroSwitchAnimation({activeId, chapterLength: chapters.length});
-
-  //handle errors
+  // handle errors
   if (!chapters) {
     return (<>Ops</>)
   }
 
-  const nextSlug = activeId >= chapters.length - 1 ? chapters[0].slug : chapters[activeId + 1].slug;
-  const prevSlug = activeId === 0 ? chapters[chapters.length - 1].slug : chapters[activeId - 1].slug;
+
+  const nextSlug = activeChapterIndex >= chapters.length - 1 ? chapters[0].slug : chapters[activeChapterIndex + 1].slug;
+  const prevSlug = activeChapterIndex === 0 ? chapters[chapters.length - 1].slug : chapters[activeChapterIndex - 1].slug;
 
   return (
     <header className="overflow-hidden w-screen h-screen md:block flex flex-col">
@@ -42,13 +30,14 @@ export default function HeroSection() {
       </div>
 
       <div className="flex flex-row w-screen relative h-full">
-        {chapters.map(({ id, slug, title, isActive, color, description }) => (
+        {chapters.map(({ id, slug, title, isActive, subtitle }, index) => {
+          const color = getBgColor(id);
+          return (
           <motion.div
-            custom={id}
+            custom={index}
             variants={variants}
             initial={{ x: 0, y: 0 }}
             animate={controls}
-            transition={{ ease: "easeOut", duration: 1 }}
             className={clsx(
               'absolute md:h-screen h-full flex flex-col w-screen overflow-hidden',
               color === 'pink' && 'bg-pink',
@@ -74,7 +63,7 @@ export default function HeroSection() {
                   </motion.div>
                   <HeroContent
                     title={title}
-                    subtitle={description}
+                    subtitle={subtitle}
                     nextUrl={`/portfolio/${nextSlug}`}
                     prevUrl={`/portfolio/${prevSlug}`}
                     bgColor={color}
@@ -85,7 +74,7 @@ export default function HeroSection() {
               )}
             </AnimatePresence>
           </motion.div>
-        ))}
+        )})}
       </div>
     </header>
   );

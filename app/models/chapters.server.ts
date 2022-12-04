@@ -1,42 +1,48 @@
+import { checkEnvVars, checkStatus } from "~/utils/errorHandling";
+
 export interface Chapter {
   id: number;
-  slug: string;
-  title: string;
-  description: string;
-  color: 'pink' | 'green' | 'blue';
+  attributes: {
+    slug: string;
+    title: string;
+    subtitle: string;
+  }
 }
 
-const chapters: Chapter[] = [
-  {
-    id: 0,
-    slug: 'graphic-design',
-    title: 'Graphic Design',
-    description: 'This is a description about graphic design providing more information',
-    color: 'pink',
-  },
-  {
-    id: 1,
-    slug: 'web-development',
-    title: 'Web Development',
-    description: 'This is a description about web development providing more information',
-    color: 'green',
-  },
-  {
-    id: 2,
-    slug: 'motion-design',
-    title: 'Motion Design',
-    description: 'This is a description about motion design providing more information',
-    color: 'blue',
-  },
-]
+async function getChaptersFromCms(): Promise<Chapter[]> {
+  checkEnvVars();
 
-export function getChapterListings(activeSlug?: string) {
-  return chapters.map(({ id, slug, title, color, description }) => ({
-    id, slug, title, color, description, isActive: slug === activeSlug,
+  const response = await fetch(`${process.env.STRAPI_URL_BASE}/api/portfolios`, {
+    method: "GET",
+    headers: {
+        "Authorization": `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        "Content-Type": "application/json"
+        }
+    });
+
+    console.log('response', response)
+
+    checkStatus(response);
+
+    const data = await response.json();
+        
+    if (data.error) {
+        throw new Response("Error loading data from strapi", { status: 500 });
+    }
+
+    return data.data;
+}
+
+
+export async function getChapterListings(activeSlug?: string) {
+
+  const chapters = await getChaptersFromCms();
+
+  return chapters.map(({ id, attributes: { slug, title, subtitle } }) => ({
+    id, slug, title, subtitle, isActive: slug === activeSlug,
   }))
 };
 
 export function getChapter(activeSlug?: string) {
-  console.log('active slug', activeSlug)
-  return chapters.find(({ slug }) => slug === activeSlug);
+  // return chapters.find(({ slug }) => slug === activeSlug); 
 };

@@ -2,7 +2,17 @@ import useSmallScreens from "@src/hooks/useSmallSceens";
 import { useAnimation } from "framer-motion";
 import { useEffect } from "react"
 
-export const useHeroSwitchAnimation = ({ activeId, chapterLength, mobileHeighPercentage = 10, desktopWidthPercentage = 7 } : {activeId: number, chapterLength: number, mobileHeighPercentage?: number, desktopWidthPercentage?: number}) => {
+export const useHeroSwitchAnimation = ({
+  activeId,
+  chapterLength,
+  mobileHeighPercentage = 10,
+  desktopWidthPercentage = 7
+} : {
+  activeId: number,
+  chapterLength: number,
+  mobileHeighPercentage?: number,
+  desktopWidthPercentage?: number
+}) => {
   const controls = useAnimation();
   const isSmallScreen = useSmallScreens();
 
