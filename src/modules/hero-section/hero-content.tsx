@@ -41,8 +41,8 @@ export const HeroContent:FC<HeroContentProps> = ({ title, subtitle, prevUrl, nex
           </Link>
 
           <div className="md:flex hidden gap-x-6 items-center">
-            <ArrowButton direction="prev" url={prevUrl} />
-            <ArrowButton direction="next" url={nextUrl} />
+            <ArrowButton direction="prev" url={prevUrl} inverted />
+            <ArrowButton direction="next" url={nextUrl} inverted />
           </div>
         </motion.div>
       </Container>

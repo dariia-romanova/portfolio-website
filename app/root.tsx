@@ -7,14 +7,15 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { colorSchemes, getColorIndex } from "@src/utils.tsx/colorScemes";
+import { createContext, useState } from "react";
 import styles from "./styles/app.css"
 
 export function links() {
   return [
     {
       rel: "icon",
-      href: "favicon.svg",
-      type: "image/svg+xml"
+      href: "../public/favicon.ico",
     },
     { rel: "stylesheet", href: styles },
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -28,21 +29,42 @@ export function links() {
   ]
 }
 
+
+
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "New Remix App",
   viewport: "width=device-width,initial-scale=1",
 });
 
+
+export const ColorSchemeProvider = createContext({colorScheme: colorSchemes[0], toggleColorScheme: (color: number) => {return;}});
+
 export default function App() {
+  const [colorScheme, setColorScheme] = useState<number>(1);
+
+
+  const providerValue = {
+    colorScheme: colorSchemes[colorScheme],
+    toggleColorScheme
+  };
+
+  function toggleColorScheme(color: number) {
+    const colorIndex = getColorIndex(color);
+
+    setColorScheme(colorIndex);
+  }
+
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         <Meta />
         <Links />
       </head>
       <body className="bg-basic font-serif">
-        <Outlet />
+        <ColorSchemeProvider.Provider value={providerValue}>
+          <Outlet />
+        </ColorSchemeProvider.Provider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

@@ -6,8 +6,7 @@ import { HeroSideLink } from "./hero-side-link";
 import { HeroLogo } from "./hero-logo";
 import { AnimatePresence, motion } from "framer-motion"
 import { useHeroSwitchAnimation } from "../../hooks/useHeroSwitchAnimation";
-import { getBgColor } from "@src/utils.tsx/getBgColor";
-
+import { getColorByIndex, SchemeColors } from "@src/utils.tsx/colorScemes";
 
 export default function HeroSection({ chapters } : { chapters: ChaptersLoaderData }) {
   const activeChapterIndex = chapters.findIndex(({ isActive }) => isActive);
@@ -30,8 +29,9 @@ export default function HeroSection({ chapters } : { chapters: ChaptersLoaderDat
       </div>
 
       <div className="flex flex-row w-screen relative h-full">
-        {chapters.map(({ id, slug, title, isActive, subtitle }, index) => {
-          const color = getBgColor(id);
+        {chapters.map(({ slug, title, isActive, subtitle }, index) => {
+          const { mainColor } = getColorByIndex(index);
+
           return (
           <motion.div
             custom={index}
@@ -40,11 +40,11 @@ export default function HeroSection({ chapters } : { chapters: ChaptersLoaderDat
             animate={controls}
             className={clsx(
               'absolute md:h-screen h-full flex flex-col w-screen overflow-hidden',
-              color === 'pink' && 'bg-pink',
-              color === 'green' && 'bg-green',
-              color === 'blue' && 'bg-blue',
+              mainColor === SchemeColors.First && 'bg-firstColor',
+              mainColor === SchemeColors.Second && 'bg-secondColor',
+              mainColor === SchemeColors.Third && 'bg-thirdColor',
             )}
-            key={id}
+            key={slug}
           >
             <AnimatePresence>
               {isActive ? (
@@ -66,7 +66,7 @@ export default function HeroSection({ chapters } : { chapters: ChaptersLoaderDat
                     subtitle={subtitle}
                     nextUrl={`/portfolio/${nextSlug}`}
                     prevUrl={`/portfolio/${prevSlug}`}
-                    bgColor={color}
+                    bgColor={mainColor}
                   />
                 </motion.div> 
               ) : (
