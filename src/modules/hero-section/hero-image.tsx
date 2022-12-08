@@ -27,7 +27,7 @@ export const HeroImage: FC<HeroImageProps> = ({ bgColor }) => {
             <div className="w-[210px] h-[210px] bg-firstColorLighter" />
             <div className="w-[210px] h-[210px] bg-thirdColor rounded-full" />
             <div className="absolute right-0 bottom-0 translate-x-1/2">
-              <HeroImageDecoration1 />
+              <HeroImageDecoration1 inverted />
             </div>
           </div>
         ) : bgColor === SchemeColors.Second ? (
@@ -35,7 +35,7 @@ export const HeroImage: FC<HeroImageProps> = ({ bgColor }) => {
             <div className="relative self-end">
               <div className="w-[210px] h-[105px] bg-black rounded-b-full" />
               <div className="absolute left-0 bottom-0 -translate-x-2/3">
-                <HeroImageDecoration2 />
+                <HeroImageDecoration2 inverted />
               </div>
             </div>
             <div className="flex">
@@ -60,7 +60,7 @@ export const HeroImage: FC<HeroImageProps> = ({ bgColor }) => {
             </div>
 
             <div className="absolute right-0 bottom-0 translate-x-1/3 translate-y-2">
-              <HeroImageDecoration3 />
+              <HeroImageDecoration3 inverted />
             </div>
           </div>
         )}

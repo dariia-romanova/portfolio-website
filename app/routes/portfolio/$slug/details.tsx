@@ -1,6 +1,9 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
+import { HeroImageDecoration1 } from "@src/assets/svg/hero-image-decoration-1";
+import { HeroImageDecoration2 } from "@src/assets/svg/hero-image-decoration-2";
+import { HeroImageDecoration3 } from "@src/assets/svg/hero-image-decoration-3";
 import { ArrowButton } from "@src/components/arrow-button";
 import { Container } from "@src/components/container";
 import { H2 } from "@src/components/h2/h2";
@@ -44,7 +47,7 @@ export default function DetailsRoute() {
 
 
   return (
-    <>
+    <div className="overflow-hidden">
       <section className="lg:pt-24 md:pt-16 pt-8" ref={pageStart}>
         <Container>
           <div className="lg:mb-24 md:mb-16 mb-8 font-serif xl:text-lg sm:text-md text-sm text-black lg:w-2/3">
@@ -110,7 +113,7 @@ export default function DetailsRoute() {
         )}
       </section>
 
-      <footer className="lg:py-16 md:py-8 py-4">
+      <footer className="relative lg:py-16 md:py-8 py-4">
         <Container>
           <div className="w-full flex justify-between">
             <div className="flex items-center">
@@ -119,9 +122,25 @@ export default function DetailsRoute() {
             </div>
 
             <p className="font-serif lg:text-md sm:text-smd text-sm">2022</p>
-          </div>
+            
+              {mainColor === SchemeColors.First && 'text-firstColor' ? (
+                <>
+                  <div className="md:block hidden absolute -bottom-8 right-0 z-10">
+                    <HeroImageDecoration1 width={500} height={300} />
+                  </div>
+                </>
+              ) : mainColor === SchemeColors.Second ? (
+                <div className="md:block hidden absolute -bottom-20 right-0 z-10">
+                  <HeroImageDecoration2 width={360} height={360} />
+                </div>
+              ) : (
+                <div className="md:block hidden absolute -bottom-8 right-0 z-10">
+                  <HeroImageDecoration3 width={300} height={280} />
+                </div>
+              )}
+            </div>
         </Container>
       </footer>
-    </>
+    </div>
   );
 };
