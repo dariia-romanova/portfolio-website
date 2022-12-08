@@ -1,10 +1,15 @@
+import clsx from "clsx";
 import { motion } from "framer-motion";
+import { useColorScheme } from "@src/hooks/useColorScheme";
+import { SchemeColors } from "@src/utils.tsx/colorScemes";
 
 export const TapIcon = () => {
+  const { colorScheme: { mainColor } } = useColorScheme()
+
   return (
     <div className="relative flex items-center justify-center">
     <motion.div
-      className="absolute rounded-full border border-basic w-10 h-10"
+      className="absolute rounded-full border-[2px] border-basic w-14 h-14"
       animate={{
         scale: [1, 2],
         opacity: [0, 1, 1, 1, 1, 0],
@@ -17,7 +22,12 @@ export const TapIcon = () => {
       }}
     />
       <motion.div 
-        className="absolute rounded-full border border-basic w-10 h-10"
+        className={clsx(
+          'absolute rounded-full border-[2px] border-basic w-14 h-14',
+          // mainColor === SchemeColors.First && 'bg-firstColor',
+          // mainColor === SchemeColors.Second && 'bg-secondColor',
+          // mainColor === SchemeColors.Third && 'bg-thirdColor'
+        )}
         animate={{
           scale: [1, 1.5],
           opacity: [0, 1, 1, 1, 1, 0]
@@ -30,7 +40,13 @@ export const TapIcon = () => {
           repeatDelay: 1,
         }}
       />
-      <div className=" text-basic text-sm font-serif p-2">
+      {/* <div className="'absolute rounded-full w-10 h-10'" /> */}
+      <div className={clsx(
+        'w-14 h-14 rounded-full relative text-basic text-sm font-serif p-2 z-10 flex items-center justify-center',
+        mainColor === SchemeColors.First && 'bg-firstColor',
+        mainColor === SchemeColors.Second && 'bg-secondColor',
+        mainColor === SchemeColors.Third && 'bg-thirdColor'
+      )}>
         tap
       </div>
     </div>

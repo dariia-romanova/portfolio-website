@@ -9,6 +9,7 @@ import { useHeroSwitchAnimation } from "../../hooks/useHeroSwitchAnimation";
 import { getColorByIndex, SchemeColors } from "@src/utils.tsx/colorScemes";
 
 export default function HeroSection({ chapters } : { chapters: ChaptersLoaderData }) {
+
   const activeChapterIndex = chapters.findIndex(({ isActive }) => isActive);
 
   const { controls, variants } = useHeroSwitchAnimation({activeId: activeChapterIndex, chapterLength: chapters.length});
@@ -18,9 +19,10 @@ export default function HeroSection({ chapters } : { chapters: ChaptersLoaderDat
     return (<>Ops</>)
   }
 
-
   const nextSlug = activeChapterIndex >= chapters.length - 1 ? chapters[0].slug : chapters[activeChapterIndex + 1].slug;
   const prevSlug = activeChapterIndex === 0 ? chapters[chapters.length - 1].slug : chapters[activeChapterIndex - 1].slug;
+
+
 
   return (
     <header className="overflow-hidden w-screen h-screen md:block flex flex-col">
@@ -33,6 +35,7 @@ export default function HeroSection({ chapters } : { chapters: ChaptersLoaderDat
           const { mainColor } = getColorByIndex(index);
 
           return (
+          <>
           <motion.div
             custom={index}
             variants={variants}
@@ -40,6 +43,7 @@ export default function HeroSection({ chapters } : { chapters: ChaptersLoaderDat
             animate={controls}
             className={clsx(
               'absolute md:h-screen h-full flex flex-col w-screen overflow-hidden',
+              !isActive && 'cursor-pointer',
               mainColor === SchemeColors.First && 'bg-firstColor',
               mainColor === SchemeColors.Second && 'bg-secondColor',
               mainColor === SchemeColors.Third && 'bg-thirdColor',
@@ -68,12 +72,13 @@ export default function HeroSection({ chapters } : { chapters: ChaptersLoaderDat
                     prevUrl={`/portfolio/${prevSlug}`}
                     bgColor={mainColor}
                   />
-                </motion.div> 
+                </motion.div>
               ) : (
                 <HeroSideLink link={`/portfolio/${slug}`} title={title} />
               )}
             </AnimatePresence>
           </motion.div>
+          </>
         )})}
       </div>
     </header>

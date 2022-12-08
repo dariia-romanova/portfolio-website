@@ -61,7 +61,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="bg-basic font-serif">
+      <body className="bg-basic font-serif" id="body">
         <ColorSchemeProvider.Provider value={providerValue}>
           <Outlet />
         </ColorSchemeProvider.Provider>
