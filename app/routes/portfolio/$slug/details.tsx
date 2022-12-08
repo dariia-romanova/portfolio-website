@@ -93,12 +93,14 @@ export default function DetailsRoute() {
                 <ul className="flex">
                   {links?.link.map(({ link, title }) => (
                     <li key={title}>
-                      <Link
-                        to={link}
+                      <a
+                        href={link}
+                        target="_blank"
+                        rel="noreferrer"
                         className="font-bold text-basic after:block after:w-full after:h-0.5 after:bg-basic xl:text-lg sm:text-md text-sm"
                       >
                         {title}
-                      </Link>
+                      </a>
                     </li>
                   ))}
                 </ul>
