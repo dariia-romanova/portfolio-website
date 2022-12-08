@@ -8,41 +8,46 @@ export const TapIcon = () => {
 
   return (
     <div className="relative flex items-center justify-center">
-    <motion.div
-      className="absolute rounded-full border-[2px] border-basic w-14 h-14"
-      animate={{
-        scale: [1, 2],
-        opacity: [0, 1, 1, 1, 1, 0],
-      }}
-      transition={{
-        duration: 1.8,
-        ease: 'linear',
-        repeat: Infinity,
-        repeatDelay: 1.2,
-      }}
-    />
       <motion.div 
-        className="absolute rounded-full border-[2px] border-basic w-14 h-14"
+        className="absolute rounded-full w-16 h-16 bg-basic "
         animate={{
           scale: [1, 1.5],
-          opacity: [0, 1, 1, 1, 1, 0]
         }}
         transition={{
-          duration: 2,
-          ease: 'linear',
+          duration: 1,
+          ease: 'easeInOut',
           repeat: Infinity,
-          delay: 0.5,
-          repeatDelay: 1,
+          repeatType: "reverse",
         }}
       />
-      <div className={clsx(
-        'w-14 h-14 rounded-full relative text-basic text-sm font-serif p-2 z-10 flex items-center justify-center',
-        mainColor === SchemeColors.First && 'bg-firstColor',
-        mainColor === SchemeColors.Second && 'bg-secondColor',
-        mainColor === SchemeColors.Third && 'bg-thirdColor'
-      )}>
+      <motion.div
+        className={clsx(
+          'absolute w-14 h-14 rounded-full text-basic text-sm z-10 flex items-center justify-center ',
+          mainColor === SchemeColors.First && 'bg-firstColor',
+          mainColor === SchemeColors.Second && 'bg-secondColor',
+          mainColor === SchemeColors.Third && 'bg-thirdColor'
+        )}
+        animate={{
+          scale: [1, 1.5],
+        }}
+        transition={{
+          duration: 1,
+          ease: 'easeInOut',
+          repeat: Infinity,
+          repeatType: "reverse",
+          delay: 0.1,
+        }}
+      />
+      <motion.div
+        className={clsx(
+          'w-14 h-14 rounded-full relative text-basic text-smd font-serif font-bold p-2 z-10 flex items-center justify-center ',
+          mainColor === SchemeColors.First && 'bg-firstColor',
+          mainColor === SchemeColors.Second && 'bg-secondColor',
+          mainColor === SchemeColors.Third && 'bg-thirdColor'
+        )}
+      >
         tap
-      </div>
+      </motion.div>
     </div>
   )
 }

@@ -11,12 +11,10 @@ const Tap: FC<TapCursorProps> = ({ isShown }) => {
   return (
     <motion.div
       onClick={(event) => event.preventDefault()}
-      className="fixed z-50 top-0 left-0 pointer-events-none"
-      initial={{ scale: 0 }}
-      animate={{ x: x, y: y, scale: 1 }}
+      className="fixed z-50 top-0 left-0 pointer-events-none -translate-x-1/2 -translate-y-1/2"
+      animate={{ x: x, y: y }}
       transition={{
-        type: "spring",
-        mass: 0.01,
+        type: "tween",
         duration: 0,
       }}
     >
