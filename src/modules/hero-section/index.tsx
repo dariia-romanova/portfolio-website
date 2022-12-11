@@ -35,8 +35,8 @@ export default function HeroSection({ chapters } : { chapters: ChaptersLoaderDat
           const { mainColor } = getColorByIndex(index);
 
           return (
-          <>
           <motion.div
+            key={`section-${slug}`}
             custom={index}
             variants={variants}
             initial={{ x: 0, y: 0 }}
@@ -48,7 +48,6 @@ export default function HeroSection({ chapters } : { chapters: ChaptersLoaderDat
               mainColor === SchemeColors.Second && 'bg-secondColor',
               mainColor === SchemeColors.Third && 'bg-thirdColor',
             )}
-            key={slug}
           >
             <AnimatePresence>
               {isActive ? (
@@ -74,11 +73,10 @@ export default function HeroSection({ chapters } : { chapters: ChaptersLoaderDat
                   />
                 </motion.div>
               ) : (
-                <HeroSideLink link={`/portfolio/${slug}`} title={title} />
+                <HeroSideLink link={`/portfolio/${slug}`} title={title} key={`section-${slug}`} />
               )}
             </AnimatePresence>
           </motion.div>
-          </>
         )})}
       </div>
     </header>
