@@ -1,13 +1,10 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { HeroImageDecoration1 } from "@src/assets/svg/hero-image-decoration-1";
-import { HeroImageDecoration2 } from "@src/assets/svg/hero-image-decoration-2";
-import { HeroImageDecoration3 } from "@src/assets/svg/hero-image-decoration-3";
-import { ArrowButton } from "@src/components/arrow-button";
 import { Container } from "@src/components/container";
 import { H2 } from "@src/components/h2/h2";
 import { useColorScheme } from "@src/hooks/useColorScheme";
+import { Footer } from "@src/modules/details-page/footer";
 import { SchemeColors } from "@src/utils.tsx/colorScemes";
 import clsx from "clsx";
 import { useEffect, useRef } from "react";
@@ -69,8 +66,8 @@ export default function DetailsRoute() {
             tile === 'medium' && 'lg:grid-cols-3 grid-cols-2',
             tile === 'small' && 'xl:grid-cols-6 lg:grid-cols-5 grid-cols-3',
           )}>
-            {gallery.map(({ image, title: itemTitle }) => (
-              <li key={itemTitle}>
+            {gallery.map(({ image, title: itemTitle, link }) => (
+              <li key={itemTitle} className="cursor-">
                 <div className="lg:mb-6 md:mb-4 mb-2">
                   <img alt={itemTitle} src={`${url}${image.data.attributes.url}`} />
                 </div>
@@ -113,34 +110,7 @@ export default function DetailsRoute() {
         )}
       </section>
 
-      <footer className="relative lg:py-16 md:py-8 py-4">
-        <Container>
-          <div className="w-full flex justify-between">
-            <div className="flex items-center">
-              <p className="mr-4 font-serif lg:text-md sm:text-smd text-sm">More Categories</p>
-              <ArrowButton url='../' direction="up" />
-            </div>
-
-            <p className="font-serif lg:text-md sm:text-smd text-sm">2022</p>
-            
-              {mainColor === SchemeColors.First && 'text-firstColor' ? (
-                <>
-                  <div className="md:block hidden absolute -bottom-8 right-0 z-10">
-                    <HeroImageDecoration1 width={500} height={300} />
-                  </div>
-                </>
-              ) : mainColor === SchemeColors.Second ? (
-                <div className="md:block hidden absolute -bottom-20 right-0 z-10">
-                  <HeroImageDecoration2 width={360} height={360} />
-                </div>
-              ) : (
-                <div className="md:block hidden absolute -bottom-8 right-0 z-10">
-                  <HeroImageDecoration3 width={300} height={280} />
-                </div>
-              )}
-            </div>
-        </Container>
-      </footer>
+      <Footer />
     </div>
   );
 };
