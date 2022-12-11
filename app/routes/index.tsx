@@ -1,8 +1,9 @@
-import { Outlet } from "@remix-run/react";
-import { Logo } from "src/components/logo";
+import { redirect } from "@remix-run/node";
+
+export async function loader() {
+  return redirect("./portfolio");
+}
 
 export default function Index() {
-  return (
-    <></>
-  );
-}
+  return null;
+};
