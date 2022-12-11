@@ -18,6 +18,7 @@ export const ArrowButton: FC<ArrowButtonProps> = ({ direction, url, inverted }) 
         mainColor === SchemeColors.Third && 'border-thirdColor',
         inverted && 'border-basic'
       )}
+      prefetch="intent"
     >
       <div className={clsx(
         'w-0 h-0',

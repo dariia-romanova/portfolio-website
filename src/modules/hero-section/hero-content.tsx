@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import { ArrowButton } from "../../components/arrow-button";
 import { Container } from "../../components/container"
 import type { FC } from "react";
 import type { HeroContentProps } from "./hero-content.props";
 import { motion } from 'framer-motion';
 import { HeroImage } from "./hero-image";
+import { Link } from "@remix-run/react";
   
 
 export const HeroContent:FC<HeroContentProps> = ({ title, subtitle, prevUrl, nextUrl, bgColor }) => {
@@ -36,7 +36,7 @@ export const HeroContent:FC<HeroContentProps> = ({ title, subtitle, prevUrl, nex
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
         >
-          <Link to="./details" className="text-basic font-serif xl:text-lg sm:text-md text-sm font-bold">
+          <Link to="./details" className="text-basic font-serif xl:text-lg sm:text-md text-sm font-bold" prefetch="intent">
             Read more
           </Link>
 

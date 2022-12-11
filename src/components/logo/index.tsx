@@ -11,6 +11,7 @@ export const Logo: FC<LogoProps> = ({ inverted }) => {
         'font-serif lg:text-lg text-sm md:text-basic text-firstColor',
         inverted && 'text-black',
       )}
+      prefetch="intent"
     >
       <span className="font-bold">_</span>
       dashimi
