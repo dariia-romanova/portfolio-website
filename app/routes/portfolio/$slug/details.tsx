@@ -5,11 +5,12 @@ import { Container } from "@src/components/container";
 import { H2 } from "@src/components/h2/h2";
 import { useColorScheme } from "@src/hooks/useColorScheme";
 import { Footer } from "@src/modules/details-page/footer";
+import { Gallery } from "@src/modules/details-page/gallery/gallery";
+import { Links } from "@src/modules/details-page/links/links";
 import { SchemeColors } from "@src/utils.tsx/colorScemes";
 import clsx from "clsx";
 import { useEffect, useRef } from "react";
 import { getChapter } from "~/models/chapters.server";
-import url from '~/utils/url';
 
 type LoaderData = Awaited<ReturnType<typeof getChapter>>
 
@@ -22,7 +23,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 export default function DetailsRoute() {
   const chapter = useLoaderData() as LoaderData;
 
-  const { colorScheme: { mainColor, secondaryColor } } = useColorScheme();
+  const { colorScheme: { mainColor } } = useColorScheme();
 
   const pageStart = useRef<HTMLDivElement>(null);
 
@@ -40,7 +41,7 @@ export default function DetailsRoute() {
     );
   };
 
-  const { introduction, content: { title, tile, gallery }, links } = chapter;
+  const { introduction, content: { title } } = chapter;
 
 
   return (
@@ -54,60 +55,17 @@ export default function DetailsRoute() {
           <H2
             title={title}
             className={clsx(
+              'md:text-left text-center',
               mainColor === SchemeColors.First && 'text-firstColor',
               mainColor === SchemeColors.Second && 'text-secondColor',
               mainColor === SchemeColors.Third && 'text-thirdColor',
             )}
           />
 
-          <ul className={clsx(
-            'grid lg:gap-8 lg:mb-24 md:mb-16 mb-8',
-            tile === 'big' && 'lg:grid-cols-2 grid-cols-1',
-            tile === 'medium' && 'lg:grid-cols-3 grid-cols-2',
-            tile === 'small' && 'xl:grid-cols-6 lg:grid-cols-5 grid-cols-3',
-          )}>
-            {gallery.map(({ image, title: itemTitle, link }) => (
-              <li key={itemTitle} className="cursor-">
-                <div className="lg:mb-6 md:mb-4 mb-2">
-                  <img alt={itemTitle} src={`${url}${image.data.attributes.url}`} />
-                </div>
-                <p className="font-serif lg:text-md sm:text-smd text-sm">{itemTitle}</p>
-              </li>
-            ))}
-          </ul>
+          <Gallery />
         </Container>
 
-        {links && (
-          <div className={
-            clsx(
-              'lg:py-12 md:py-8 py-8',
-              secondaryColor === SchemeColors.First && 'bg-firstColor',
-              secondaryColor === SchemeColors.Second && 'bg-secondColor',
-              secondaryColor === SchemeColors.Third && 'bg-thirdColor',
-            )
-          }>
-            <Container>
-              <div className="flex">
-                <h3 className="xl:mr-12 lg:mr-8 mr-4 text-basic xl:text-lg sm:text-md text-sm">{`${links.title}:`}</h3>
-
-                <ul className="flex">
-                  {links?.link.map(({ link, title }) => (
-                    <li key={title}>
-                      <a
-                        href={link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="font-bold text-basic after:block after:w-full after:h-0.5 after:bg-basic xl:text-lg sm:text-md text-sm"
-                      >
-                        {title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Container>
-          </div>
-        )}
+        <Links />
       </section>
 
       <Footer />

@@ -8,6 +8,7 @@ import { SchemeColors } from "@src/utils.tsx/colorScemes";
 
 export const Footer = () => {
   const { colorScheme: { mainColor } } = useColorScheme();
+  let year =  new Date().getFullYear();
 
   return (
     <footer className="relative lg:py-16 md:py-8 py-4">
@@ -18,7 +19,9 @@ export const Footer = () => {
           <ArrowButton url='../' direction="up" />
         </div>
 
-        <p className="font-serif lg:text-md sm:text-smd text-sm">2022</p>
+        <p className="font-serif lg:text-md sm:text-smd text-sm">
+          {year}
+        </p>
         
           {mainColor === SchemeColors.First && 'text-firstColor' ? (
             <>

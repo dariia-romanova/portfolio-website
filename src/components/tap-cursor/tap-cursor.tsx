@@ -12,7 +12,7 @@ const Tap: FC<TapCursorProps> = ({ isShown }) => {
     <motion.div
       onClick={(event) => event.preventDefault()}
       className="fixed z-50 top-0 left-0 pointer-events-none -translate-x-1/2 -translate-y-1/2"
-      animate={{ x: x, y: y }}
+      animate={{ x: x - 20, y: y - 20 }}
       transition={{
         type: "tween",
         duration: 0,
