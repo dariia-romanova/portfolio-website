@@ -595,6 +595,14 @@ video {
   bottom: 1.5rem;
 }
 
+.-left-4 {
+  left: -1rem;
+}
+
+.-bottom-12 {
+  bottom: -3rem;
+}
+
 .z-50 {
   z-index: 50;
 }
@@ -606,6 +614,10 @@ video {
 .mx-6 {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
 }
 
 .mb-8 {
@@ -689,6 +701,10 @@ video {
   height: 10%;
 }
 
+.h-\[77\.5px\] {
+  height: 77.5px;
+}
+
 .h-\[300px\] {
   height: 300px;
 }
@@ -750,6 +766,10 @@ video {
   width: 86%;
 }
 
+.w-\[155px\] {
+  width: 155px;
+}
+
 .max-w-\[400px\] {
   max-width: 400px;
 }
@@ -760,6 +780,18 @@ video {
 
 .origin-left {
   transform-origin: left;
+}
+
+.origin-center {
+  transform-origin: center;
+}
+
+.origin-bottom {
+  transform-origin: bottom;
+}
+
+.origin-top {
+  transform-origin: top;
 }
 
 .translate-x-1 {
@@ -831,10 +863,6 @@ video {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -910,6 +938,11 @@ video {
 .rounded-b-full {
   border-bottom-right-radius: 9999px;
   border-bottom-left-radius: 9999px;
+}
+
+.rounded-r-full {
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
 }
 
 .border-2 {
@@ -1035,11 +1068,6 @@ video {
   padding: 0.5rem;
 }
 
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -1058,6 +1086,11 @@ video {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .pt-8 {
@@ -1197,6 +1230,10 @@ body {
     margin-right: 2.5rem;
   }
 
+  .md\:mt-16 {
+    margin-top: 4rem;
+  }
+
   .md\:mb-16 {
     margin-bottom: 4rem;
   }
@@ -1304,16 +1341,16 @@ body {
     margin-bottom: 6rem;
   }
 
-  .lg\:mr-8 {
-    margin-right: 2rem;
-  }
-
   .lg\:mt-4 {
     margin-top: 1rem;
   }
 
   .lg\:mb-6 {
     margin-bottom: 1.5rem;
+  }
+
+  .lg\:mr-8 {
+    margin-right: 2rem;
   }
 
   .lg\:w-2\/3 {
@@ -1324,27 +1361,6 @@ body {
     width: 48%;
   }
 
-  .lg\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .lg\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .lg\:grid-cols-5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
-  .lg\:gap-8 {
-    gap: 2rem;
-  }
-
-  .lg\:py-12 {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -1353,6 +1369,11 @@ body {
   .lg\:py-10 {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
+  }
+
+  .lg\:py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 
   .lg\:pt-24 {
@@ -1385,10 +1406,6 @@ body {
 }
 
 @media (min-width: 1280px) {
-  .xl\:mr-12 {
-    margin-right: 3rem;
-  }
-
   .xl\:mb-4 {
     margin-bottom: 1rem;
   }
@@ -1397,8 +1414,8 @@ body {
     margin-top: 1rem;
   }
 
-  .xl\:grid-cols-6 {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+  .xl\:mr-12 {
+    margin-right: 3rem;
   }
 
   .xl\:py-16 {
